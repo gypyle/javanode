@@ -1,0 +1,27 @@
+Lock:
+    ReentrantLock的使用
+    ReentrantReadWriteLock的使用
+
+JDK1.5之后新增了ReentrantLock类可以达到同样的效果,在扩展功能上更加强大,就有嗅探锁定、多路分支通知等功能
+
+lock能实现和synchronized的效果,lock方法之后,对象就持有线程监视器,释放时其他线程再次争抢
+condition实现等待和通知,可以实现选择性通知,具有选择权,使效率高一些,await方法调用之前必须要lock方法
+
+公平锁与非公平锁
+    公平锁获取锁的顺序是按照线程加锁的顺序来分配的,而非公平锁获取锁随机的抢占机制
+
+    getHoldCount()是查询当前线程调用lock的个数
+    getQueueLength()等待获取该线程的估计数量
+    lock.getWaitQueueLength(condition) 获取该条件下condition的数量
+    hasQueuedThread(thread) 查询该线程是否在等待获取该锁
+    hasQueuedThreads() 是否有线程在等待获取改锁
+    hasWaiters(condition) 是否有线程在等待该条件下的锁
+    isFair() 是否是公平锁
+    isHoldByCurrentThreaad() 是否是当前线程获取的该锁
+    isLocked 判断该锁是否被使用着
+    lockInterruptibly() 当前线程如果没有中断则获取锁定,如果中断则抛出异常
+    tryLock() 如果锁未被占用,则获取锁
+    awaitUninterruptibly()
+    awaitUntil()  等待时间到达前可以被唤醒
+
+ReentrantReadWriteLock 读写锁
